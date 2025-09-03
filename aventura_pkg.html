@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Python: package aventura_pkg</title>
+</head>
+
+<body>
+
+    <table class="heading">
+        <tr class="heading-text decor">
+            <td class="title">&nbsp;<br><strong class="title">aventura_pkg</strong> (version 1.0.0)</td>
+            <td class="extra"><a href=".">index</a><br><a
+                    href="file:d%3A%5C4.%20projeto%20desenvolve%5C2024.2%5Cpython%20ii%5Cmodulo1%5Cmatch-case%5Caventura_no_labirinto%5Caventura_pkg%5C__init__.py">d:\4.
+                    projeto desenvolve\2024.2\python
+                    ii\modulo1\match-case\aventura_no_labirinto\aventura_pkg\__init__.py</a></td>
+        </tr>
+    </table>
+    <p><span class="code">Pacote&nbsp;Aventura&nbsp;no&nbsp;Labirinto<br>
+            ==========================<br>
+            &nbsp;<br>
+            Um&nbsp;jogo&nbsp;de&nbsp;labirinto&nbsp;interativo&nbsp;com&nbsp;Rich&nbsp;e&nbsp;controles&nbsp;fluidos.<br>
+            &nbsp;<br>
+            Módulos:<br>
+            -&nbsp;labirinto:&nbsp;Geração&nbsp;e&nbsp;impressão&nbsp;de&nbsp;labirintos<br>
+            -&nbsp;jogador:&nbsp;Controle&nbsp;do&nbsp;jogador&nbsp;e&nbsp;pontuação&nbsp;&nbsp;<br>
+            -&nbsp;utils:&nbsp;Funções&nbsp;utilitárias&nbsp;e&nbsp;interface</span></p>
+    <p>
+    <table class="section">
+        <tr class="decor pkg-content-decor heading-text">
+            <td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Package Contents</strong></td>
+        </tr>
+
+        <tr>
+            <td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td class="singlecolumn">
+                <table>
+                    <tr>
+                        <td class="multicolumn"><a href="aventura_pkg.jogador.html">jogador</a><br>
+                        </td>
+                        <td class="multicolumn"><a href="aventura_pkg.labirinto.html">labirinto</a><br>
+                        </td>
+                        <td class="multicolumn"><a href="aventura_pkg.utils.html">utils</a><br>
+                        </td>
+                        <td class="multicolumn"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <p>
+    <table class="section">
+        <tr class="decor functions-decor heading-text">
+            <td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td>
+        </tr>
+
+        <tr>
+            <td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td class="singlecolumn">
+                <dl>
+                    <dt><a name="-animacao_vitoria"><strong>animacao_vitoria</strong></a>(console, profundidade=0)</dt>
+                    <dd><span
+                            class="code">Função&nbsp;recursiva&nbsp;que&nbsp;cria&nbsp;animação&nbsp;de&nbsp;vitória.<br>
+                            &nbsp;<br>
+                            Args:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;console:&nbsp;Console&nbsp;do&nbsp;Rich<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;profundidade:&nbsp;Nível&nbsp;de&nbsp;recursão&nbsp;(controla&nbsp;a&nbsp;animação)</span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><a name="-cores_disponiveis"><strong>cores_disponiveis</strong></a>()</dt>
+                    <dd><span
+                            class="code">Retorna&nbsp;lista&nbsp;de&nbsp;cores&nbsp;disponíveis&nbsp;para&nbsp;o&nbsp;tema.<br>
+                            &nbsp;<br>
+                            Returns:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;list:&nbsp;Lista&nbsp;de&nbsp;cores&nbsp;disponíveis</span></dd>
+                </dl>
+                <dl>
+                    <dt><a name="-criar_labirinto"><strong>criar_labirinto</strong></a>(linhas=21, colunas=41,
+                        dificuldade=1)</dt>
+                    <dd><span class="code">Cria&nbsp;um&nbsp;labirinto&nbsp;usando&nbsp;algoritmo&nbsp;DFS.<br>
+                            &nbsp;<br>
+                            Args:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;linhas&nbsp;(int):&nbsp;Número&nbsp;de&nbsp;linhas&nbsp;do&nbsp;labirinto<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;colunas&nbsp;(int):&nbsp;Número&nbsp;de&nbsp;colunas&nbsp;do&nbsp;labirinto<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;dificuldade&nbsp;(int):&nbsp;1=Fácil,&nbsp;2=Médio,&nbsp;3=Difícil<br>
+                            &nbsp;<br>
+                            Returns:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;tuple:&nbsp;(labirinto,&nbsp;itens,&nbsp;entrada,&nbsp;saida)</span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><a name="-escolher_dificuldade"><strong>escolher_dificuldade</strong></a>(console,
+                        cor_tema='green')</dt>
+                    <dd><span class="code">Menu&nbsp;para&nbsp;escolher&nbsp;dificuldade&nbsp;do&nbsp;jogo.<br>
+                            &nbsp;<br>
+                            Args:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;console:&nbsp;Console&nbsp;do&nbsp;Rich<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;cor_tema:&nbsp;Cor&nbsp;do&nbsp;tema<br>
+                            &nbsp;<br>
+                            Returns:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;Nível&nbsp;de&nbsp;dificuldade&nbsp;(1-3)</span></dd>
+                </dl>
+                <dl>
+                    <dt><a name="-exibir_status_jogador"><strong>exibir_status_jogador</strong></a>(console, jogador)
+                    </dt>
+                    <dd><span
+                            class="code">Exibe&nbsp;o&nbsp;status&nbsp;atual&nbsp;do&nbsp;jogador&nbsp;sem&nbsp;emojis.<br>
+                            &nbsp;<br>
+                            Args:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;console:&nbsp;Console&nbsp;do&nbsp;Rich<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;jogador:&nbsp;Estado&nbsp;do&nbsp;jogador<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                            Returns:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Panel:&nbsp;Painel&nbsp;com&nbsp;status&nbsp;do&nbsp;jogador</span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><a name="-imprime_instrucoes"><strong>imprime_instrucoes</strong></a>(console, cor_tema='green')
+                    </dt>
+                    <dd><span
+                            class="code">Imprime&nbsp;as&nbsp;instruções&nbsp;do&nbsp;jogo&nbsp;formatadas&nbsp;sem&nbsp;emojis.<br>
+                            &nbsp;<br>
+                            Args:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;console:&nbsp;Console&nbsp;do&nbsp;Rich<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;cor_tema:&nbsp;Cor&nbsp;do&nbsp;tema</span></dd>
+                </dl>
+                <dl>
+                    <dt><a name="-imprimir_labirinto"><strong>imprimir_labirinto</strong></a>(console, lab, jogador_pos,
+                        itens, itens_coletados, cor_tema='green')</dt>
+                    <dd><span
+                            class="code">Imprime&nbsp;o&nbsp;labirinto&nbsp;com&nbsp;jogador&nbsp;e&nbsp;itens&nbsp;usando&nbsp;caracteres&nbsp;ASCII&nbsp;simples.<br>
+                            &nbsp;<br>
+                            Args:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;console:&nbsp;Console&nbsp;do&nbsp;Rich<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;lab:&nbsp;Matriz&nbsp;do&nbsp;labirinto<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;jogador_pos:&nbsp;Posição&nbsp;atual&nbsp;do&nbsp;jogador&nbsp;(x,&nbsp;y)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;itens:&nbsp;Dicionário&nbsp;de&nbsp;itens&nbsp;no&nbsp;labirinto<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;itens_coletados:&nbsp;Set&nbsp;de&nbsp;posições&nbsp;de&nbsp;itens&nbsp;coletados<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;cor_tema:&nbsp;Cor&nbsp;tema&nbsp;das&nbsp;paredes</span></dd>
+                </dl>
+                <dl>
+                    <dt><a name="-iniciar_jogador"><strong>iniciar_jogador</strong></a>(nome, entrada)</dt>
+                    <dd><span class="code">Inicializa&nbsp;o&nbsp;jogador&nbsp;na&nbsp;posição&nbsp;inicial.<br>
+                            &nbsp;<br>
+                            Args:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;nome&nbsp;(str):&nbsp;Nome&nbsp;do&nbsp;jogador<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;entrada&nbsp;(tuple):&nbsp;Posição&nbsp;inicial&nbsp;(x,&nbsp;y)<br>
+                            &nbsp;<br>
+                            Returns:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;EstadoJogador:&nbsp;Estado&nbsp;inicial&nbsp;do&nbsp;jogador</span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><a name="-mostrar_menu"><strong>mostrar_menu</strong></a>(console, nome_jogador,
+                        cor_tema='green')</dt>
+                    <dd><span class="code">Mostra&nbsp;o&nbsp;menu&nbsp;principal&nbsp;do&nbsp;jogo.<br>
+                            &nbsp;<br>
+                            Args:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;console:&nbsp;Console&nbsp;do&nbsp;Rich<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;nome_jogador:&nbsp;Nome&nbsp;do&nbsp;jogador<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;cor_tema:&nbsp;Cor&nbsp;do&nbsp;tema<br>
+                            &nbsp;<br>
+                            Returns:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;Opção&nbsp;escolhida</span></dd>
+                </dl>
+                <dl>
+                    <dt><a name="-mostrar_resultado_final"><strong>mostrar_resultado_final</strong></a>(console,
+                        jogador, venceu, cor_tema='green')</dt>
+                    <dd><span class="code">Mostra&nbsp;tela&nbsp;de&nbsp;resultado&nbsp;final.<br>
+                            &nbsp;<br>
+                            Args:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;console:&nbsp;Console&nbsp;do&nbsp;Rich<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;jogador:&nbsp;Estado&nbsp;do&nbsp;jogador<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;venceu:&nbsp;Se&nbsp;o&nbsp;jogador&nbsp;venceu<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;cor_tema:&nbsp;Cor&nbsp;do&nbsp;tema</span></dd>
+                </dl>
+                <dl>
+                    <dt><a name="-mover"><strong>mover</strong></a>(jogador, labirinto, direcao=None)</dt>
+                    <dd><span
+                            class="code">Move&nbsp;o&nbsp;jogador&nbsp;baseado&nbsp;na&nbsp;entrada&nbsp;do&nbsp;teclado&nbsp;ou&nbsp;direção&nbsp;especificada.<br>
+                            &nbsp;<br>
+                            Args:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;jogador:&nbsp;Estado&nbsp;do&nbsp;jogador<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;labirinto:&nbsp;Matriz&nbsp;do&nbsp;labirinto<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;direcao:&nbsp;Direção&nbsp;específica&nbsp;(para&nbsp;IA)&nbsp;ou&nbsp;None&nbsp;(para&nbsp;teclado)<br>
+                            &nbsp;<br>
+                            Returns:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;tuple:&nbsp;(nova_posicao,&nbsp;moveu)</span></dd>
+                </dl>
+                <dl>
+                    <dt><a name="-pontuar"><strong>pontuar</strong></a>(jogador, item_coletado=None, bonus_tempo=False,
+                        penalidade=0)</dt>
+                    <dd><span
+                            class="code">Atualiza&nbsp;pontuação&nbsp;do&nbsp;jogador&nbsp;baseado&nbsp;em&nbsp;diferentes&nbsp;eventos.<br>
+                            &nbsp;<br>
+                            Args:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;jogador:&nbsp;Estado&nbsp;do&nbsp;jogador<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;item_coletado:&nbsp;Item&nbsp;coletado&nbsp;(dict&nbsp;com&nbsp;'valor')<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;bonus_tempo:&nbsp;Se&nbsp;deve&nbsp;dar&nbsp;bônus&nbsp;por&nbsp;tempo<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;penalidade:&nbsp;Penalidade&nbsp;a&nbsp;aplicar<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                            Returns:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;Mensagem&nbsp;sobre&nbsp;a&nbsp;pontuação</span></dd>
+                </dl>
+                <dl>
+                    <dt><a name="-resolver_labirinto"><strong>resolver_labirinto</strong></a>(labirinto, inicio, fim,
+                        caminho_atual=None, visitados=None)</dt>
+                    <dd><span
+                            class="code">Função&nbsp;recursiva&nbsp;que&nbsp;encontra&nbsp;o&nbsp;caminho&nbsp;para&nbsp;resolver&nbsp;o&nbsp;labirinto.<br>
+                            &nbsp;<br>
+                            Args:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;labirinto:&nbsp;Matriz&nbsp;do&nbsp;labirinto<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;inicio:&nbsp;Posição&nbsp;inicial&nbsp;(x,&nbsp;y)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;fim:&nbsp;Posição&nbsp;final&nbsp;(x,&nbsp;y)&nbsp;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;caminho_atual:&nbsp;Caminho&nbsp;percorrido&nbsp;até&nbsp;agora<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;visitados:&nbsp;Set&nbsp;de&nbsp;posições&nbsp;já&nbsp;visitadas<br>
+                            &nbsp;<br>
+                            Returns:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;list:&nbsp;Lista&nbsp;de&nbsp;movimentos&nbsp;para&nbsp;resolver&nbsp;ou&nbsp;None&nbsp;se&nbsp;impossível</span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><a name="-verificar_item_coletado"><strong>verificar_item_coletado</strong></a>(jogador_pos,
+                        itens, itens_coletados)</dt>
+                    <dd><span
+                            class="code">Verifica&nbsp;se&nbsp;jogador&nbsp;coletou&nbsp;algum&nbsp;item&nbsp;na&nbsp;posição&nbsp;atual.<br>
+                            &nbsp;<br>
+                            Args:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;jogador_pos:&nbsp;Posição&nbsp;do&nbsp;jogador&nbsp;(x,&nbsp;y)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;itens:&nbsp;Dicionário&nbsp;de&nbsp;itens<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;itens_coletados:&nbsp;Set&nbsp;de&nbsp;posições&nbsp;coletadas<br>
+                            &nbsp;<br>
+                            Returns:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;dict&nbsp;ou&nbsp;None:&nbsp;Item&nbsp;coletado&nbsp;ou&nbsp;None</span>
+                    </dd>
+                </dl>
+            </td>
+        </tr>
+    </table>
+    <p>
+    <table class="section">
+        <tr class="decor data-decor heading-text">
+            <td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td>
+        </tr>
+
+        <tr>
+            <td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td class="singlecolumn"><strong>__all__</strong> = ['criar_labirinto', 'imprimir_labirinto',
+                'verificar_item_coletado', 'iniciar_jogador', 'mover', 'pontuar', 'resolver_labirinto',
+                'exibir_status_jogador', 'imprime_instrucoes', 'mostrar_menu', 'animacao_vitoria',
+                'escolher_dificuldade', 'cores_disponiveis', 'mostrar_resultado_final']</td>
+        </tr>
+    </table>
+    <p>
+    <table class="section">
+        <tr class="decor author-decor heading-text">
+            <td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Author</strong></td>
+        </tr>
+
+        <tr>
+            <td class="decor author-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td class="singlecolumn">PD017&nbsp;Kennyson&nbsp;Chaves</td>
+        </tr>
+    </table>
+</body>
+
+</html>

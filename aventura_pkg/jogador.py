@@ -9,6 +9,7 @@ import time
 import keyboard
 from rich.console import Console
 from rich.panel import Panel
+from rich.text import Text
 
 class EstadoJogador:
     """Classe para gerenciar estado do jogador"""
@@ -75,21 +76,28 @@ def mover(jogador, labirinto, direcao=None):
                 nova_posicao = (nova_x, nova_y)
                 moveu = True
     else:
-        # Movimento manual
+        # Movimento manual com verificação de múltiplas teclas
         try:
-            for tecla, (dx, dy) in movimentos.items():
-                if keyboard.is_pressed(tecla):
+            # Prioridade: WASD primeiro, depois setas
+            teclas_prioridade = ['w', 'a', 's', 'd', 'up', 'left', 'down', 'right']
+            
+            for tecla in teclas_prioridade:
+                if keyboard.is_pressed(tecla) and tecla in movimentos:
+                    dx, dy = movimentos[tecla]
                     nova_x, nova_y = x + dx, y + dy
                     
+                    # Verifica limites e se é espaço livre
                     if (0 <= nova_x < len(labirinto) and 
                         0 <= nova_y < len(labirinto[0]) and 
                         labirinto[nova_x][nova_y] == " "):
                         nova_posicao = (nova_x, nova_y)
                         moveu = True
-                        break
-        except:
+                        break  # Para no primeiro movimento válido
+        except Exception:
+            # Ignora erros de teclado
             pass
     
+    # Atualiza posição apenas se moveu
     if moveu:
         jogador.posicao = nova_posicao
         jogador.movimentos += 1
@@ -105,11 +113,15 @@ def pontuar(jogador, item_coletado=None, bonus_tempo=False, penalidade=0):
         item_coletado: Item coletado (dict com 'valor')
         bonus_tempo: Se deve dar bônus por tempo
         penalidade: Penalidade a aplicar
+        
+    Returns:
+        str: Mensagem sobre a pontuação
     """
     if item_coletado:
         # Pontos por item coletado
         pontos = item_coletado["valor"]
         jogador.pontuacao += pontos
+        
         # Adiciona item à lista (armazena apenas o tipo e valor)
         jogador.itens_coletados.append({
             "tipo": item_coletado["tipo"],
@@ -122,7 +134,7 @@ def pontuar(jogador, item_coletado=None, bonus_tempo=False, penalidade=0):
         tempo_total = time.time() - jogador.tempo_inicio
         bonus = max(100 - int(tempo_total), 10)  # Mínimo 10 pontos
         jogador.pontuacao += bonus
-        return f"+{bonus} pontos de bônus de tempo!"
+        return f"+{bonus} pontos de bonus de tempo!"
     
     if penalidade > 0:
         # Penalidade por movimentos excessivos
@@ -133,31 +145,40 @@ def pontuar(jogador, item_coletado=None, bonus_tempo=False, penalidade=0):
 
 def exibir_status_jogador(console, jogador):
     """
-    Exibe o status atual do jogador.
+    Exibe o status atual do jogador sem emojis.
     
     Args:
         console: Console do Rich
         jogador: Estado do jogador
+        
+    Returns:
+        Panel: Painel com status do jogador
     """
     tempo_atual = time.time() - jogador.tempo_inicio
-    status = f"""
-🎮 Jogador: [bold blue]{jogador.nome}[/bold blue]
-🏆 Pontuação: [bold yellow]{jogador.pontuacao}[/bold yellow]
-👣 Movimentos: [bold white]{jogador.movimentos}[/bold white]
-⏱️  Tempo: [bold green]{tempo_atual:.1f}s[/bold green]
-💎 Itens: [bold cyan]{len(jogador.itens_coletados)}[/bold cyan]
-    """
+    
+    # Cria texto do status sem emojis
+    status = Text()
+    status.append("Jogador: ", style="white")
+    status.append(f"{jogador.nome}\n", style="bold blue")
+    status.append("Pontuacao: ", style="white")
+    status.append(f"{jogador.pontuacao}\n", style="bold yellow")
+    status.append("Movimentos: ", style="white")
+    status.append(f"{jogador.movimentos}\n", style="bold white")
+    status.append("Tempo: ", style="white")
+    status.append(f"{tempo_atual:.1f}s\n", style="bold green")
+    status.append("Itens: ", style="white")
+    status.append(f"{len(jogador.itens_coletados)}", style="bold cyan")
     
     painel = Panel(
-        status.strip(),
-        title="📊 Status",
+        status,
+        title="Status",
         border_style="blue",
         width=25
     )
     
     return painel
 
-def resolver_labirinto(labirinto, inicio, fim, caminho_atual=[]):
+def resolver_labirinto(labirinto, inicio, fim, caminho_atual=None, visitados=None):
     """
     Função recursiva que encontra o caminho para resolver o labirinto.
     
@@ -166,19 +187,24 @@ def resolver_labirinto(labirinto, inicio, fim, caminho_atual=[]):
         inicio: Posição inicial (x, y)
         fim: Posição final (x, y) 
         caminho_atual: Caminho percorrido até agora
+        visitados: Set de posições já visitadas
     
     Returns:
         list: Lista de movimentos para resolver ou None se impossível
     """
+    if caminho_atual is None:
+        caminho_atual = []
+    if visitados is None:
+        visitados = set()
+    
     x, y = inicio
     
     # Chegou ao destino
     if inicio == fim:
         return caminho_atual
     
-    # Marca posição atual como visitada temporariamente
-    labirinto_temp = [linha[:] for linha in labirinto]  # Cópia
-    labirinto_temp[x][y] = "#"
+    # Marca posição atual como visitada
+    visitados.add(inicio)
     
     # Tenta cada direção
     direcoes = [
@@ -190,18 +216,21 @@ def resolver_labirinto(labirinto, inicio, fim, caminho_atual=[]):
     
     for (dx, dy), movimento in direcoes:
         nova_x, nova_y = x + dx, y + dy
+        nova_pos = (nova_x, nova_y)
         
-        # Verifica se a posição é válida e livre
+        # Verifica se a posição é válida, livre e não visitada
         if (0 <= nova_x < len(labirinto) and 
             0 <= nova_y < len(labirinto[0]) and 
-            labirinto_temp[nova_x][nova_y] == " "):
+            labirinto[nova_x][nova_y] == " " and
+            nova_pos not in visitados):
             
             # Chamada recursiva
             resultado = resolver_labirinto(
-                labirinto_temp, 
-                (nova_x, nova_y), 
+                labirinto, 
+                nova_pos, 
                 fim, 
-                caminho_atual + [movimento]
+                caminho_atual + [movimento],
+                visitados.copy()  # Cria nova cópia para cada ramo
             )
             
             if resultado is not None:

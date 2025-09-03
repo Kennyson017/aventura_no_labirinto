@@ -11,20 +11,26 @@ Módulos:
 """
 
 __version__ = "1.0.0"
-__author__ = "Aventureiro do Código"
+__author__ = "PD017 Kennyson Chaves"
 
-from .labirinto import criar_labirinto, imprimir_labirinto
-from .jogador import iniciar_jogador, mover, pontuar, resolver_labirinto
-from .utils import imprime_instrucoes, mostrar_menu, animacao_vitoria
+from .labirinto import criar_labirinto, imprimir_labirinto, verificar_item_coletado
+from .jogador import iniciar_jogador, mover, pontuar, resolver_labirinto, exibir_status_jogador
+from .utils import (imprime_instrucoes, mostrar_menu, animacao_vitoria, 
+                   escolher_dificuldade, cores_disponiveis, mostrar_resultado_final)
 
 __all__ = [
     'criar_labirinto',
-    'imprimir_labirinto', 
+    'imprimir_labirinto',
+    'verificar_item_coletado',
     'iniciar_jogador',
     'mover',
     'pontuar',
     'resolver_labirinto',
+    'exibir_status_jogador',
     'imprime_instrucoes',
     'mostrar_menu',
-    'animacao_vitoria'
+    'animacao_vitoria',
+    'escolher_dificuldade',
+    'cores_disponiveis',
+    'mostrar_resultado_final'
 ]
