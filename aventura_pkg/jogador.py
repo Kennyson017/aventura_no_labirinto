@@ -39,50 +39,48 @@ def iniciar_jogador(nome, entrada):
 def mover(jogador, labirinto, direcao=None):
     """
     Move o jogador baseado na entrada do teclado ou direção especificada.
-    
-    Args:
-        jogador: Estado do jogador
-        labirinto: Matriz do labirinto
-        direcao: Direção específica (para IA) ou None (para teclado)
-    
-    Returns:
-        tuple: (nova_posicao, moveu)
+    ...
     """
     x, y = jogador.posicao
     nova_posicao = (x, y)
     moveu = False
-    
-    # Mapeamento de direções
-    movimentos = {
-        'up': (-1, 0),
-        'down': (1, 0), 
-        'left': (0, -1),
-        'right': (0, 1),
-        'w': (-1, 0),
-        's': (1, 0),
-        'a': (0, -1),
-        'd': (0, 1)
-    }
+    dx, dy = 0, 0 # Inicializa delta
     
     if direcao:
-        # Movimento automático (para IA)
-        if direcao in movimentos:
-            dx, dy = movimentos[direcao]
+        # Movimento automático (para IA) - Perfeito para match ... case
+        match direcao:
+            case 'up' | 'w':
+                dx, dy = (-1, 0)
+            case 'down' | 's':
+                dx, dy = (1, 0)
+            case 'left' | 'a':
+                dx, dy = (0, -1)
+            case 'right' | 'd':
+                dx, dy = (0, 1)
+            case _:
+                dx, dy = (0, 0) # Direção inválida
+        
+        if (dx, dy) != (0, 0):
             nova_x, nova_y = x + dx, y + dy
-            
             if (0 <= nova_x < len(labirinto) and 
                 0 <= nova_y < len(labirinto[0]) and 
                 labirinto[nova_x][nova_y] == " "):
                 nova_posicao = (nova_x, nova_y)
                 moveu = True
     else:
-        # Movimento manual com verificação de múltiplas teclas
+        # Movimento manual (if/elif é mais adequado aqui que match ... case)
+        # Mapeamento de direções
+        movimentos = {
+            'w': (-1, 0), 's': (1, 0), 'a': (0, -1), 'd': (0, 1),
+            'up': (-1, 0), 'down': (1, 0), 'left': (0, -1), 'right': (0, 1)
+        }
+        
         try:
             # Prioridade: WASD primeiro, depois setas
             teclas_prioridade = ['w', 'a', 's', 'd', 'up', 'left', 'down', 'right']
             
             for tecla in teclas_prioridade:
-                if keyboard.is_pressed(tecla) and tecla in movimentos:
+                if keyboard.is_pressed(tecla):
                     dx, dy = movimentos[tecla]
                     nova_x, nova_y = x + dx, y + dy
                     

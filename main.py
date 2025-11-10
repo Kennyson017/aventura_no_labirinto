@@ -282,33 +282,35 @@ def main():
         while True:
             opcao = mostrar_menu(console, nome, cor_tema)
             
-            if opcao == "1":  # Jogar
-                venceu, jogador_final = executar_jogo(console, nome, dificuldade, cor_tema, som_habilitado)
-                mostrar_resultado_final(console, jogador_final, venceu, cor_tema)
-                if venceu:
-                    animacao_vitoria(console)
-                input("\nPressione Enter para continuar...")
-                
-            elif opcao == "2":  # Instruções
-                imprime_instrucoes(console, cor_tema)
-                input()
-                
-            elif opcao == "3":  # Demonstração IA
-                demonstrar_solucao(console, nome, dificuldade, cor_tema)
-                
-            elif opcao == "4":  # Ranking (em breve)
-                console.clear()
-                console.print("[bold yellow]Sistema de ranking em desenvolvimento![/bold yellow]")
-                input("Pressione Enter para continuar...")
-                
-            elif opcao == "5":  # Sair
-                console.clear()
-                console.print(f"[bold {cor_tema}]Obrigado por jogar, {nome}![/bold {cor_tema}]")
-                console.print("[dim]Ate a proxima aventura![/dim]")
-                break
-            else:
-                console.print("[bold red]Opcao invalida! Tente novamente.[/bold red]")
-                time.sleep(1)
+            match opcao:
+                case "1":  # Jogar
+                    venceu, jogador_final = executar_jogo(console, nome, dificuldade, cor_tema, som_habilitado)
+                    mostrar_resultado_final(console, jogador_final, venceu, cor_tema)
+                    if venceu:
+                        animacao_vitoria(console)
+                    input("\nPressione Enter para continuar...")
+                    
+                case "2":  # Instruções
+                    imprime_instrucoes(console, cor_tema)
+                    input()
+                    
+                case "3":  # Demonstração IA
+                    demonstrar_solucao(console, nome, dificuldade, cor_tema)
+                    
+                case "4":  # Ranking (em breve)
+                    console.clear()
+                    console.print("[bold yellow]Sistema de ranking em desenvolvimento![/bold yellow]")
+                    input("Pressione Enter para continuar...")
+                    
+                case "5":  # Sair
+                    console.clear()
+                    console.print(f"[bold {cor_tema}]Obrigado por jogar, {nome}![/bold {cor_tema}]")
+                    console.print("[dim]Ate a proxima aventura![/dim]")
+                    break  # Sai do loop while
+                    
+                case _:  # Caso padrão (substitui o 'else')
+                    console.print("[bold red]Opcao invalida! Tente novamente.[/bold red]")
+                    time.sleep(1)
     
     except KeyboardInterrupt:
         console.clear()
